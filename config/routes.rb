@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :registration
   resources :getresult
   get '/home', to: 'home#index'
   resources :getvideo
