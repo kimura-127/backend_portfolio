@@ -19,6 +19,7 @@ class SendanalyzeController < ApplicationController
       # 分析結果のエンドポイント
       endpoint = "#{user_id}/#{video_data_id}"
       # 動画データを取得
+      puts "動画取得開始"
       uploaded_file = params.require(:video)
       if uploaded_file then
         puts "params: success, status: 200, ok!"
@@ -65,7 +66,8 @@ class SendanalyzeController < ApplicationController
       bucket_name = "source-bakket-jab-v1"
       bucket = storage.bucket bucket_name
 
-      # 動画、jsonファイルの送信及び動画の解析処理
+      # # 動画、jsonファイルの送信及び動画の解析処理
+      puts "動画送信開始"
       if bucket.create_file  file_data_path, file_name then #ここで動画の送信
         puts "video upload: success, status: 200"
         render json:{status: 200,upload: "success"}
@@ -73,6 +75,17 @@ class SendanalyzeController < ApplicationController
         puts "video upload: failed, status: 500"
         render json:{status: 500,upload: "failed"}
       end
+
+      # sleep 60 && 
+      # if bucket.create_file  file_data_path, file_name then #ここで動画の送信
+      #   puts "video upload: success, status: 200"
+      #   render json:{status: 200,upload: "success"}
+      # else
+      #   puts "video upload: failed, status: 500"
+      #   render json:{status: 500,upload: "failed"}
+      # end
+
+      
         #ここでjsonファイルの送信
       bucket.create_file StringIO.new(jabJsonl), "jab.jsonl"
       

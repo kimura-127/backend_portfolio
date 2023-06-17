@@ -27,3 +27,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/test-gcp-intelligence-api-eeddb7d80388.json
+/client_secret_719529994663-5hbumcgri68q8n3ibosq6tj0cggjjh5g.apps.googleusercontent.com.json
+/request.json
+/.env
