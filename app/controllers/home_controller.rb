@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   before_action :verify_token
 
   def index
+    # フロントエンドにステータスを送信
     render json:{
       status: 200
     }
@@ -9,6 +10,7 @@ class HomeController < ApplicationController
 
   private
 
+  # トークン検証
   def verify_token
     puts ("検証開始")
     auth_header = request.headers["Authorization"]
