@@ -1,24 +1,55 @@
-# README
+## アプリケーション名
+「analyzeBoxing」
+## アプリケーションの概要
+- 何ができるのか  
+格闘技におけるジャブを質をGCPのVertex AIの動作認識モデルで分析できます。  
+  
+- 誰のために作ったのか
+ボクシングジムではトレーナーは主にプロの選手の指導にあたります、なのでトレーナーは一般会員の人に直接指導する機会は少なく特に初心者の方はどのようなパンチが良いのか判断するのは難しい傾向にあり、このアプリはそんな初心者のための判断材料になればと考え制作しました。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- テスト用アカウント  
+メールアドレス: testuser@example.com  
+パスワード: password
 
-Things you may want to cover:
+- URL  
+https://frontend.my-first-portfolio.com
 
-* Ruby version
+- 利用方法 
+ログインもしくは新規登録を行い、アップロード画面にて分析したい動画を選択・アップロードを行います。  
+数分後に分析結果を表示する画面で結果を確認することができます。
 
-* System dependencies
+- 今後実装する予定の機能  
+１.送信にかかる時間を短縮するために動画データをチャンク単位で送信する機能。  
+２.動画データがどこのチャンクまで送信されたかを記録し、もし通信が途切れても続きの動画データを送信できる機能。  
+３.上記の機能追加後は長い時間の動画データも問題なく送信できるようになるためジャブだけの分析ではなくスパーリングや試合などの動画を分析し、その動画に映っている選手二人に対しIDを付与し有効打や受けたパンチとその種類を割り出しその選手のどういったところが良かったのか、悪かったのか、そして改善案まで分析する機能。
 
-* Configuration
+## 開発について
+### 使用技術  
+- フロントエンド  
+フレームワーク: Next.js   
+言語:Typescript  
+- バックエンド  
+フレームワーク: Ruby on Rails  
+言語: Ruby  
+Webサーバー: Nginx  
+Applicationサーバー: unicorn  
+インフラ: AWS ECS  
+データベース: MySQL(AWS RDS)  
+DNS: Route53  
+SSL証明書: Amazon Certificate Manager  
+Other: Docker 及び docker compose  
+- 開発人数  
+個人開発  
+- 開発期間・過程  
+2023年  
+1月: ポートフォリオ制作開始  
+2月: GCPのVertex AIの分析モデル完成  
+3月: Railsにて概ねバックエンドでの処理完成  
+4月: 訓練にて１ヶ月間他の駐屯地へ移動、その際WEBアプリ開発できず
+5月:　Next.jsにて概ねフロントエンドの処理完成
+6月: AWSのECSにてデプロイ
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
