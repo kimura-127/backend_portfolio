@@ -75,16 +75,6 @@ class SendanalyzeController < ApplicationController
         puts "video upload: failed, status: 500"
         render json:{status: 500,upload: "failed"}
       end
-
-      # sleep 60 && 
-      # if bucket.create_file  file_data_path, file_name then #ここで動画の送信
-      #   puts "video upload: success, status: 200"
-      #   render json:{status: 200,upload: "success"}
-      # else
-      #   puts "video upload: failed, status: 500"
-      #   render json:{status: 500,upload: "failed"}
-      # end
-
       
         #ここでjsonファイルの送信
       bucket.create_file StringIO.new(jabJsonl), "jab.jsonl"
