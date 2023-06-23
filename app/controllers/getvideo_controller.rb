@@ -40,4 +40,8 @@ class GetvideoController < ApplicationController
       render json:{status: 201}
     end
   end
+
+  # def destroy
+  #   puts params[:id]
+  # end
 end

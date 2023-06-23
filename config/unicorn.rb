@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 #ワーカーの数。後述
-$worker = 5
+$worker = 30
 #何秒経過すればワーカーを削除するのかを決める
 $timeout = 1800
 #自分のアプリケーション名。
