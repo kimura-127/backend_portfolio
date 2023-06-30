@@ -58,7 +58,12 @@ class SendanalyzeController < ApplicationController
 
       # credentialsの情報を元にストレージをインスタンス化
       storage = Google::Cloud::Storage.new(
-        credentials: "./test-gcp-intelligence-api-eeddb7d80388.json"
+        credentials: "./test-gcp-intelligence-api-eeddb7d80388.json",
+        retries: 10,
+        max_elapsed_time: 3000,
+        base_interval: 1.5,
+        max_interval: 60,
+        multiplier: 1.2
       )
 
       # 変数宣言
