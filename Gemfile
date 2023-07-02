@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.3"
 gem "unicorn"
 gem 'rack-cors'
-gem 'google-cloud-storage'
+gem "google-cloud-storage", "~> 1.11", require: false
 gem "bcrypt", "~> 3.1.7"
 gem "jwt"
 gem 'httparty'

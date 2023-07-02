@@ -28,6 +28,7 @@ class SendanalyzeController < ApplicationController
       end
       # 動画データの細分化
       file_data_path = uploaded_file.tempfile.path
+      puts file_data_path
       # この文字列をファイルとして扱い、そのファイルをストレージへ送信するため
       jab = {'content': "gs://source-bakket-jab-v1/#{user_id}/#{video_data_id}", 'mimeType': 'video/mp4', 'timeSegmentStart': '0.0s', 'timeSegmentEnd': '160s'}
       jabJsonl = jab.to_json
@@ -73,31 +74,40 @@ class SendanalyzeController < ApplicationController
 
       # # 動画、jsonファイルの送信及び動画の解析処理
       puts "動画送信開始"
-      if bucket.create_file  file_data_path, file_name then #ここで動画の送信
-        puts "video upload: success, status: 200"
-        render json:{status: 200,upload: "success"}
-      else
-        puts "video upload: failed, status: 500"
-        render json:{status: 500,upload: "failed"}
-      end
+      
+
+      # # active storageで保存
+      # if userData.video.attach(uploaded_file)
+      #   puts "せいこう"
+      # else
+      #   puts "しっぱい"
+      # end
+
+      # if bucket.create_file  file_data_path, file_name then #ここで動画の送信
+      #   puts "video upload: success, status: 200"
+      #   render json:{status: 200,upload: "success"}
+      # else
+      #   puts "video upload: failed, status: 500"
+      #   render json:{status: 500,upload: "failed"}
+      # end
       
         #ここでjsonファイルの送信
-      bucket.create_file StringIO.new(jabJsonl), "jab.jsonl"
+      # bucket.create_file StringIO.new(jabJsonl), "jab.jsonl"
       
         # 動画,jsonファイルを元に分析開始
         # |------------------------------------------------------------------------------------|
-        # |   $(gcloud auth print-access-token)  このコマンドを定期的に実行しアクセストークンを入力    |
+        # |   $(gcloud auth login)  このコマンドを起動時に実行しアクセストークンを入力    |
         # |------------------------------------------------------------------------------------|
-      if Open3.capture3('curl -X POST \
-        -H "Authorization: Bearer $(gcloud auth print-access-token)" \
-        -H "Content-Type: application/json; charset=utf-8" \
-        -d @request.json \
-        "https://us-central1-aiplatform.googleapis.com/v1/projects/test-gcp-intelligence-api/locations/us-central1/batchPredictionJobs"
-        ') then
-        puts "vertex AI action recognitions deployed!, status:200"
-      else
-        puts "Failed!"
-      end
+      # if Open3.capture3('curl -X POST \
+      #   -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+      #   -H "Content-Type: application/json; charset=utf-8" \
+      #   -d @request.json \
+      #   "https://us-central1-aiplatform.googleapis.com/v1/projects/test-gcp-intelligence-api/locations/us-central1/batchPredictionJobs"
+      #   ') then
+      #   puts "vertex AI action recognitions deployed!, status:200"
+      # else
+      #   puts "Failed!"
+      # end
     end
   end
 end
